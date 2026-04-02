@@ -292,8 +292,9 @@ function ui.open(module_name, data)
     -- nvim_buf_set_lines needs modifiable; it is true on a fresh buf.
     api.nvim_buf_set_lines(left_bufnr, 0, -1, false, content_lines)
     apply_readonly_opts(left_winid, left_bufnr)
-    -- keep theory buffer alive if user navigates the left window away
     api.nvim_set_option_value("bufhidden", "hide", { buf = left_bufnr })
+    api.nvim_set_option_value("buflisted", true, { buf = left_bufnr })
+    api.nvim_buf_set_name(left_bufnr, module_name .. " (lesson)")
 
     -- ── Right panel: temp file with problem statement + starter code ───────
     vim.cmd("vsplit")
@@ -374,18 +375,14 @@ function ui.open(module_name, data)
         end
         api.nvim_set_current_win(right_winid)
 
-        -- Open cheatsheet in a separate tab if one exists for this language.
+        -- Create cheatsheet as a listed buffer visible in the bufferline.
         local cs_ok, cs_lines = pcall(require, "leetcode.learn.cheatsheets." .. exercise.ext)
         if cs_ok then
-            vim.cmd("tabnew")
-            local cs_bufnr = api.nvim_get_current_buf()
-            local cs_winid = api.nvim_get_current_win()
+            local cs_bufnr = api.nvim_create_buf(true, true)
             api.nvim_buf_set_lines(cs_bufnr, 0, -1, false, cs_lines)
-            apply_readonly_opts(cs_winid, cs_bufnr)
-            vim.keymap.set("n", "q", function()
-                pcall(api.nvim_set_current_tabpage, tabpnr)
-            end, { noremap = true, silent = true, buffer = cs_bufnr })
-            pcall(api.nvim_set_current_tabpage, tabpnr)
+            api.nvim_set_option_value("modifiable", false, { buf = cs_bufnr })
+            api.nvim_set_option_value("bufhidden", "hide", { buf = cs_bufnr })
+            api.nvim_buf_set_name(cs_bufnr, exercise.lang .. " cheatsheet")
         end
     end)
 end
