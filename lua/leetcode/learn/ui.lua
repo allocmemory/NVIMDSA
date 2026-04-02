@@ -286,8 +286,7 @@ function ui.open(module_name, data)
 
     -- ── Left panel: scratch buffer with theory content ────────────────────
     local left_winid = api.nvim_get_current_win()
-    local left_bufnr = api.nvim_create_buf(false, true) -- unlisted, scratch
-    api.nvim_win_set_buf(left_winid, left_bufnr)
+    local left_bufnr = api.nvim_get_current_buf() -- reuse tabnew's buffer, no orphan
 
     local content_lines = vim.split(data.content, "\n", { plain = true })
     -- nvim_buf_set_lines needs modifiable; it is true on a fresh buf.
