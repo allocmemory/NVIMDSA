@@ -371,6 +371,20 @@ function ui.open(module_name, data)
             pcall(api.nvim_win_set_cursor, right_winid, { marker + 2, 0 })
         end
         api.nvim_set_current_win(right_winid)
+
+        -- Open cheatsheet in a separate tab if one exists for this language.
+        local cs_ok, cs_lines = pcall(require, "leetcode.learn.cheatsheets." .. exercise.ext)
+        if cs_ok then
+            vim.cmd("tabnew")
+            local cs_bufnr = api.nvim_get_current_buf()
+            local cs_winid = api.nvim_get_current_win()
+            api.nvim_buf_set_lines(cs_bufnr, 0, -1, false, cs_lines)
+            apply_readonly_opts(cs_winid, cs_bufnr)
+            vim.keymap.set("n", "q", function()
+                pcall(api.nvim_set_current_tabpage, tabpnr)
+            end, { noremap = true, silent = true, buffer = cs_bufnr })
+            pcall(api.nvim_set_current_tabpage, tabpnr)
+        end
     end)
 end
 
