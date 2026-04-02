@@ -22,23 +22,72 @@ page:insert(Title({ "Home" }, "Algorithms"))
 -- Patterns
 page:insert(section("Patterns"))
 page:insert(Buttons({
-    RoadmapButton("Two Pointers",   { icon = "■", available = false }),
-    RoadmapButton("Sliding Window", { icon = "■", available = false }),
-    RoadmapButton("Binary Search",  { icon = "■", available = false }),
+    RoadmapButton("Two Pointers", {
+        icon = "■",
+        available = true,
+        sc = "t",
+        on_press = function()
+            require("leetcode.learn").open("two_pointers")
+        end,
+    }),
+    RoadmapButton("Sliding Window", {
+        icon = "■",
+        available = true,
+        sc = "s",
+        on_press = function()
+            require("leetcode.learn").open("sliding_window")
+        end,
+    }),
+    RoadmapButton("Binary Search", {
+        icon = "■",
+        available = true,
+        sc = "b",
+        on_press = function()
+            require("leetcode.learn").open("binary_search")
+        end,
+    }),
 }))
 
 -- Graph traversal
 page:insert(section("Graph"))
 page:insert(Buttons({
-    RoadmapButton("DFS / BFS", { icon = "■", available = false }),
+    RoadmapButton("DFS / BFS", {
+        icon = "■",
+        available = true,
+        sc = "d",
+        on_press = function()
+            require("leetcode.learn").open("dfs_bfs")
+        end,
+    }),
 }))
 
 -- Dynamic & optimization
 page:insert(section("Dynamic"))
 page:insert(Buttons({
-    RoadmapButton("Dynamic Programming", { icon = "■", available = false }),
-    RoadmapButton("Backtracking",        { icon = "■", available = false }),
-    RoadmapButton("Greedy",              { icon = "■", available = false }),
+    RoadmapButton("Dynamic Programming", {
+        icon = "■",
+        available = true,
+        sc = "p",
+        on_press = function()
+            require("leetcode.learn").open("dynamic_programming")
+        end,
+    }),
+    RoadmapButton("Backtracking", {
+        icon = "■",
+        available = true,
+        sc = "k",
+        on_press = function()
+            require("leetcode.learn").open("backtracking")
+        end,
+    }),
+    RoadmapButton("Greedy", {
+        icon = "■",
+        available = true,
+        sc = "g",
+        on_press = function()
+            require("leetcode.learn").open("greedy")
+        end,
+    }),
 }))
 
 page:insert(Buttons({

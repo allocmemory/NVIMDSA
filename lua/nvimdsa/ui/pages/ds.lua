@@ -41,24 +41,80 @@ page:insert(Buttons({
             require("leetcode.learn").open("stack")
         end,
     }),
-    RoadmapButton("Array",       { icon = "■", available = false }),
-    RoadmapButton("Queue",       { icon = "■", available = false }),
-    RoadmapButton("Linked List", { icon = "■", available = false }),
+    RoadmapButton("Array", {
+        icon = "■",
+        available = true,
+        sc = "a",
+        on_press = function()
+            require("leetcode.learn").open("array")
+        end,
+    }),
+    RoadmapButton("Queue", {
+        icon = "■",
+        available = true,
+        sc = "u",
+        on_press = function()
+            require("leetcode.learn").open("queue")
+        end,
+    }),
+    RoadmapButton("Linked List", {
+        icon = "■",
+        available = true,
+        sc = "l",
+        on_press = function()
+            require("leetcode.learn").open("linked_list")
+        end,
+    }),
 }))
 
 -- Intermediate
 page:insert(section("Intermediate"))
 page:insert(Buttons({
-    RoadmapButton("Hash Map", { icon = "■", available = false }),
-    RoadmapButton("Tree",     { icon = "■", available = false }),
-    RoadmapButton("Heap",     { icon = "■", available = false }),
+    RoadmapButton("Hash Map", {
+        icon = "■",
+        available = true,
+        sc = "h",
+        on_press = function()
+            require("leetcode.learn").open("hash_map")
+        end,
+    }),
+    RoadmapButton("Tree", {
+        icon = "■",
+        available = true,
+        sc = "t",
+        on_press = function()
+            require("leetcode.learn").open("tree")
+        end,
+    }),
+    RoadmapButton("Heap", {
+        icon = "■",
+        available = true,
+        sc = "e",
+        on_press = function()
+            require("leetcode.learn").open("heap")
+        end,
+    }),
 }))
 
 -- Advanced
 page:insert(section("Advanced"))
 page:insert(Buttons({
-    RoadmapButton("Graph", { icon = "■", available = false }),
-    RoadmapButton("Trie",  { icon = "■", available = false }),
+    RoadmapButton("Graph", {
+        icon = "■",
+        available = true,
+        sc = "g",
+        on_press = function()
+            require("leetcode.learn").open("graph")
+        end,
+    }),
+    RoadmapButton("Trie", {
+        icon = "■",
+        available = true,
+        sc = "r",
+        on_press = function()
+            require("leetcode.learn").open("trie")
+        end,
+    }),
 }))
 
 page:insert(Buttons({
