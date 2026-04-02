@@ -292,6 +292,8 @@ function ui.open(module_name, data)
     -- nvim_buf_set_lines needs modifiable; it is true on a fresh buf.
     api.nvim_buf_set_lines(left_bufnr, 0, -1, false, content_lines)
     apply_readonly_opts(left_winid, left_bufnr)
+    -- keep theory buffer alive if user navigates the left window away
+    api.nvim_set_option_value("bufhidden", "hide", { buf = left_bufnr })
 
     -- ── Right panel: temp file with problem statement + starter code ───────
     vim.cmd("vsplit")
