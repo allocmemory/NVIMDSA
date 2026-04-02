@@ -132,7 +132,7 @@ Hint: for each unvisited "1" cell, run DFS to sink the entire island, then incre
 }
 ]],
 
-        tests = [[
+        tests = [=[
 // ── test harness (auto-appended, do not edit) ────────────────────────────────
 
 function runTests(): void {
@@ -183,6 +183,6 @@ function runTests(): void {
 }
 
 runTests();
-]],
+]=],
     },
 }

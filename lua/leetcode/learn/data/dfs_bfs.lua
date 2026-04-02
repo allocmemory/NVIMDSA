@@ -143,7 +143,7 @@ Hint: DFS from each unvisited land cell. Return the cell count; track the global
 }
 ]],
 
-        tests = [[
+        tests = [=[
 // ── test harness (auto-appended, do not edit) ────────────────────────────────
 
 function runTests(): void {
@@ -186,6 +186,6 @@ function runTests(): void {
 }
 
 runTests();
-]],
+]=],
     },
 }
