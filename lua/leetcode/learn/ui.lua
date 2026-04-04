@@ -315,6 +315,8 @@ function ui.open(module_name, data)
 
     vim.cmd("edit " .. vim.fn.fnameescape(tmp_path))
     local right_bufnr = api.nvim_get_current_buf()
+    -- Keep exercise out of the bufferline so it can't be opened in the left panel.
+    api.nvim_set_option_value("buflisted", false, { buf = right_bufnr })
 
     -- Set filetype so LSP and treesitter activate.
     api.nvim_set_option_value("filetype", exercise.lang, { buf = right_bufnr })

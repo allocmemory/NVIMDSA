@@ -24,6 +24,12 @@ function nvimdsa.open()
         -- Window is gone — fall through and remount.
     end
 
+    -- Hide the initial [No Name] buffer before opening a new tab.
+    local init_buf = vim.api.nvim_get_current_buf()
+    if vim.api.nvim_buf_get_name(init_buf) == "" then
+        vim.api.nvim_set_option_value("buflisted", false, { buf = init_buf })
+    end
+
     -- Open a new tab and mount the NVIMDSA menu there.
     vim.cmd("tabnew")
     local Menu = require("nvimdsa.ui.menu")
