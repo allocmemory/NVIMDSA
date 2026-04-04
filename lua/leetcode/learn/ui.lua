@@ -376,7 +376,7 @@ function ui.open(module_name, data)
         api.nvim_set_current_win(right_winid)
 
         -- Create cheatsheet as a listed buffer visible in the bufferline.
-        local cs_ok, cs_lines = pcall(require, "leetcode.learn.cheatsheets." .. exercise.ext)
+        local cs_ok, cs_lines = pcall(require, "leetcode.learn.cheatsheets." .. exercise.lang)
         if cs_ok then
             local cs_bufnr = api.nvim_create_buf(true, true)
             api.nvim_buf_set_lines(cs_bufnr, 0, -1, false, cs_lines)
